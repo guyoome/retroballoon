@@ -83,9 +83,8 @@ export function StickyNote({
       draggable
       x={x}
       y={y}
-      // onClick={() => { setSelected(true); }}
-      // onTap={() => { setSelected(true); }}
-      onDragStart={() => { setIsDragged(true) }}
+      onClick={(e) => { e.target.parent.moveToTop(); }}
+      onDragStart={(e) => { setIsDragged(true); e.target.moveToTop() }}
       onDragEnd={() => { setIsDragged(false) }}
       onMouseEnter={() => { setIsHover(true); }}
       onMouseLeave={() => { setIsHover(false); }}>
