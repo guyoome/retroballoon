@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Group, Rect } from "react-konva";
 import { EditableText } from "./EditableText";
 
-const getStyle = (colour, selected,isHover) => {
+const getStyle = (colour, selected, isHover, isDragged) => {
   const isFirefox = navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
   const baseStyle = {
     x: 0,
@@ -18,7 +18,7 @@ const getStyle = (colour, selected,isHover) => {
   if (isFirefox) {
     return baseStyle;
   }
-  if (selected) {
+  if (selected || isDragged) {
     return {
       ...baseStyle,
       stroke: "#4caf50",
@@ -34,7 +34,7 @@ const getStyle = (colour, selected,isHover) => {
   }
   return {
     ...baseStyle,
-    // margintop: "-4px"
+    margintop: "-4px"
   };
 }
 
@@ -53,15 +53,12 @@ export function StickyNote({
 }) {
   const [isEditing, setIsEditing] = useState(false);
   const [isHover, setIsHover] = useState(false);
-  // const [isTransforming, setIsTransforming] = useState(false);
+  const [isDragged, setIsDragged] = useState(false);
 
   useEffect(() => {
     if (!selected && isEditing) {
       setIsEditing(false);
     }
-    // else if (!selected && isTransforming) {
-    //   setIsTransforming(false);
-    // }
   }, [selected, isEditing]);
 
   function toggleEdit() {
@@ -69,24 +66,26 @@ export function StickyNote({
     onTextClick(!isEditing);
   }
 
-  // function toggleTransforming() {
-  //   setIsTransforming(!isTransforming);
-  //   onTextClick(!isTransforming);
-  // }
-  const style = getStyle(colour, selected, isHover);
+  const style = getStyle(colour, selected, isHover, isDragged);
   return (
     <Group
-    draggable
+      rotation={selected || isDragged ? 0 : -1}
+      offsetX={(width + 40) / 2}
+      offsetY={(height + 60) / 2}
+      duration={1}
+      draggable
       x={x}
       y={y}
-      onClick={onClick}
+      onClick={() => { onClick(); }}
       onTap={onClick}
-      onMouseEnter={() => setIsHover(true)}
-      onMouseLeave={() => setIsHover(false)}>
+      onDragStart={() => { setIsDragged(true) }}
+      onDragEnd={() => { setIsDragged(false) }}
+      onMouseEnter={() => { setIsHover(true); }}
+      onMouseLeave={() => { setIsHover(false); }}>
       <Rect
         x={0}
         y={0}
-        width={width+40}
+        width={width + 40}
         height={height + 60}
         fill={colour}
         shadowColor="black"
@@ -105,11 +104,8 @@ export function StickyNote({
         text={text}
         width={width}
         height={height}
-        // onResize={onTextResize}
         isEditing={isEditing}
-        // isTransforming={isTransforming}
         onToggleEdit={toggleEdit}
-        // onToggleTransform={toggleTransforming}
         onChange={onTextChange}
       />
     </Group>
