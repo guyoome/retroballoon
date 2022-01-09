@@ -7,7 +7,7 @@ const WhiteBoard = () => {
   const [width, setWidth] = useState(200);
   const [height, setHeight] = useState(200);
   const [selected, setSelected] = useState();
-  const [stickyNotes, setStickyNotes] = useState(["", "","",""]);
+  const [stickyNotes, setStickyNotes] = useState([]);
 
   return (
     <Stage
@@ -20,14 +20,21 @@ const WhiteBoard = () => {
           setSelected(e.target.parent.attrs.id);
         }
       }}
+      onDblClick={(e) => {
+        console.log("🦁", e)
+        setStickyNotes(stickyNotes.concat({
+          x: e.evt.layerX,
+          y: e.evt.layerY
+        }))
+      }}
     >
       <Layer>
         {stickyNotes.map((stickyNote, id) => (
           <StickyNote
             key={id}
             id={`SN-${id}`}
-            x={50}
-            y={50}
+            x={stickyNote.x}
+            y={stickyNote.y}
             colour="#d2ebd3"
             // onTextChange={(value) => setText(value)}
             width={width}
