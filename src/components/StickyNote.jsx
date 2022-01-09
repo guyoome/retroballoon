@@ -40,26 +40,32 @@ const getStyle = (colour, selected, isHover, isDragged) => {
 
 export function StickyNote({
   colour,
-  text,
   x,
   y,
   width,
   height,
-  onClick,
-  onTextResize,
-  onTextChange,
   selected,
+  id,
   onTextClick
 }) {
   const [isEditing, setIsEditing] = useState(false);
   const [isHover, setIsHover] = useState(false);
   const [isDragged, setIsDragged] = useState(false);
+  const [text, setText] = useState("Click to resize. Double click to edit.");
+  // const [selected, setSelected] = useState(false);
 
   useEffect(() => {
     if (!selected && isEditing) {
       setIsEditing(false);
     }
   }, [selected, isEditing]);
+
+  // useEffect(() => {
+  //   console.log("unselected sticky")
+  //   if (!!unselect) {
+  //     setSelected(false)
+  //   }
+  // }, [unselect]);
 
   function toggleEdit() {
     setIsEditing(!isEditing);
@@ -69,6 +75,7 @@ export function StickyNote({
   const style = getStyle(colour, selected, isHover, isDragged);
   return (
     <Group
+      id={id}
       rotation={selected || isDragged ? 0 : -1}
       offsetX={(width + 40) / 2}
       offsetY={(height + 60) / 2}
@@ -76,8 +83,8 @@ export function StickyNote({
       draggable
       x={x}
       y={y}
-      onClick={() => { onClick(); }}
-      onTap={onClick}
+      // onClick={() => { setSelected(true); }}
+      // onTap={() => { setSelected(true); }}
       onDragStart={() => { setIsDragged(true) }}
       onDragEnd={() => { setIsDragged(false) }}
       onMouseEnter={() => { setIsHover(true); }}
@@ -106,7 +113,8 @@ export function StickyNote({
         height={height}
         isEditing={isEditing}
         onToggleEdit={toggleEdit}
-        onChange={onTextChange}
+        // onChange={onTextChange}
+        onChange={(value) => setText(value)}
       />
     </Group>
   );
