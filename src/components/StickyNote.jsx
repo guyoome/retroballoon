@@ -52,20 +52,12 @@ export function StickyNote({
   const [isHover, setIsHover] = useState(false);
   const [isDragged, setIsDragged] = useState(false);
   const [text, setText] = useState("Click to resize. Double click to edit.");
-  // const [selected, setSelected] = useState(false);
 
   useEffect(() => {
     if (!selected && isEditing) {
       setIsEditing(false);
     }
   }, [selected, isEditing]);
-
-  // useEffect(() => {
-  //   console.log("unselected sticky")
-  //   if (!!unselect) {
-  //     setSelected(false)
-  //   }
-  // }, [unselect]);
 
   function toggleEdit() {
     setIsEditing(!isEditing);
