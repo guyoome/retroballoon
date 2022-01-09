@@ -76,6 +76,7 @@ export function StickyNote({
   const style = getStyle(colour, selected, isHover);
   return (
     <Group
+    draggable
       x={x}
       y={y}
       onClick={onClick}
@@ -83,35 +84,24 @@ export function StickyNote({
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}>
       <Rect
-        // {...style}
-        // style={style}
-        x={20}
-        y={20}
-        width={width}
-        height={height + 40}
-        fill={"red"}
+        x={0}
+        y={0}
+        width={width+40}
+        height={height + 60}
+        fill={colour}
         shadowColor="black"
-        shadowOffsetY={10}
+        shadowOffsetY={0}
         shadowOffsetX={0}
         shadowBlur={30}
-        shadowOpacity={0.6}
+        shadowOpacity={0.2}
         perfectDrawEnabled={false}
       />
       <Rect
         {...style}
-
-      // x={0}
-      // y={0}
-      // width={width + 40}
-      // height={height + 60}
-      // fill={colour}
-      // perfectDrawEnabled={false}
-
-
       />
       <EditableText
-        x={20}
-        y={40}
+        x={16}
+        y={32}
         text={text}
         width={width}
         height={height}
