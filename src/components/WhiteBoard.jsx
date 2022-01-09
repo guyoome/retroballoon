@@ -17,6 +17,7 @@ const WhiteBoard = () => {
       onClick={(e) => {
         if (e.currentTarget._id === e.target._id) {
           setSelected(false);
+          console.log("turn false")
         }
       }}
     >
@@ -35,10 +36,14 @@ const WhiteBoard = () => {
           //   setHeight(newHeight);
           // }}
           onClick={() => {
-            setSelected(!selected);
+            // setSelected(!selected);
+            setSelected(true);
+
+            console.log("selected!!")
           }}
           onTextClick={(newSelected) => {
-            setSelected(newSelected);
+            // setSelected(newSelected);
+            console.log("Text_selected!!")
           }}
         />
       </Layer>

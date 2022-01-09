@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Group, Rect } from "react-konva";
 import { EditableText } from "./EditableText";
 
-const getStyle = (colour, selected) => {
+const getStyle = (colour, selected,isHover) => {
   const isFirefox = navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
   const baseStyle = {
     x: 0,
@@ -10,8 +10,10 @@ const getStyle = (colour, selected) => {
     width: 240,
     height: 260,
     fill: colour,
-    cornerRadius:4,
-    perfectDrawEnabled: false
+    cornerRadius: 4,
+    perfectDrawEnabled: false,
+    strokeWidth: 4,
+    stroke: colour
   };
   if (isFirefox) {
     return baseStyle;
@@ -19,7 +21,15 @@ const getStyle = (colour, selected) => {
   if (selected) {
     return {
       ...baseStyle,
-      stroke:"#4caf50"
+      stroke: "#4caf50",
+      strokeWidth: 4
+    }
+  }
+  if (isHover) {
+    return {
+      ...baseStyle,
+      stroke: "#a6d7a8",
+      strokeWidth: 4
     }
   }
   return {
@@ -42,6 +52,7 @@ export function StickyNote({
   onTextClick
 }) {
   const [isEditing, setIsEditing] = useState(false);
+  const [isHover, setIsHover] = useState(false);
   // const [isTransforming, setIsTransforming] = useState(false);
 
   useEffect(() => {
@@ -62,9 +73,15 @@ export function StickyNote({
   //   setIsTransforming(!isTransforming);
   //   onTextClick(!isTransforming);
   // }
-  const style = getStyle(colour, selected);
+  const style = getStyle(colour, selected, isHover);
   return (
-    <Group x={x} y={y}>
+    <Group
+      x={x}
+      y={y}
+      onClick={onClick}
+      onTap={onClick}
+      onMouseEnter={() => setIsHover(true)}
+      onMouseLeave={() => setIsHover(false)}>
       <Rect
         // {...style}
         // style={style}
@@ -82,14 +99,15 @@ export function StickyNote({
       />
       <Rect
         {...style}
-        // x={0}
-        // y={0}
-        // width={width + 40}
-        // height={height + 60}
-        // fill={colour}
-        // perfectDrawEnabled={false}
-        onClick={onClick}
-        onTap={onClick}
+
+      // x={0}
+      // y={0}
+      // width={width + 40}
+      // height={height + 60}
+      // fill={colour}
+      // perfectDrawEnabled={false}
+
+
       />
       <EditableText
         x={20}
