@@ -1,6 +1,5 @@
 import React from "react";
 import { Html } from "react-konva-utils";
-import { useEffect } from "react/cjs/react.production.min";
 
 function getStyle(width, height) {
   const isFirefox = navigator.userAgent.toLowerCase().indexOf("firefox") > -1;

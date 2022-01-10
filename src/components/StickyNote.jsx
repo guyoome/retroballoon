@@ -43,8 +43,7 @@ export function StickyNote({
   x,
   y,
   selected,
-  id,
-  onTextClick
+  id
 }) {
   const [isEditing, setIsEditing] = useState(false);
   const [isHover, setIsHover] = useState(false);
@@ -68,7 +67,6 @@ export function StickyNote({
 
   function toggleEdit() {
     setIsEditing(!isEditing);
-    onTextClick(!isEditing);
   }
 
   const style = getStyle(color, selected, isHover, isDragged);

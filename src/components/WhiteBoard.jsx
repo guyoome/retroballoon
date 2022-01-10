@@ -37,7 +37,6 @@ const WhiteBoard = () => {
             y={stickyNote.y}
             color={COLORS.blue}
             selected={selected === `SN-${id}` ? true : false}
-            onTextClick={(newSelected) => { console.log("Text_selected!!") }}
           />
         )
         )}
