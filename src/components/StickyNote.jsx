@@ -79,7 +79,11 @@ export function StickyNote({
       onDragStart={(e) => { setIsDragged(true); e.target.moveToTop() }}
       onDragEnd={() => { setIsDragged(false) }}
       onMouseEnter={() => { setIsHover(true); }}
-      onMouseLeave={() => { setIsHover(false); }}>
+      onMouseLeave={() => { setIsHover(false); }}
+      onMouseDown={(e) => { setIsDragged(true); e.target.parent.moveToTop(); }}
+      onMouseUp={(e) => { setIsDragged(false); }}
+    >
+
       <Rect
         x={0}
         y={0}
