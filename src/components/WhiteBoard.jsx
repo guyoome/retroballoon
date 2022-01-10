@@ -47,8 +47,10 @@ const WhiteBoard = () => {
 
   return (
     <Stage
+    style={{backgroundColor:"#eff3f6"}}
       width={window.innerWidth}
       height={window.innerHeight}
+      draggable
       scaleX={stageScale}
       scaleY={stageScale}
       x={stageX}
@@ -62,11 +64,13 @@ const WhiteBoard = () => {
         }
       }}
       onDblClick={(e) => {
-        console.log("🅱️",e)
+        console.log("🅱️",e.target.getRelativePointerPosition())
+        console.log("🗻",e.evt.layerX,e.evt.layerY)
         if (e.currentTarget._id === e.target._id) {
+          const mouse = e.target.getRelativePointerPosition();
           setStickyNotes(stickyNotes.concat({
-            x: e.evt.layerX,
-            y: e.evt.layerY
+            x: mouse.x,
+            y: mouse.y
           }))
           setSelected(`SN-${stickyNotes.length}`);
         }
