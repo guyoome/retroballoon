@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Group, Rect } from "react-konva";
+import { Group, Rect, Text } from "react-konva";
 import { EditableText } from "./EditableText";
+
+const charLimit = 50;
 
 const getStyle = (color, selected, isHover, isDragged) => {
   const isFirefox = navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
@@ -52,9 +54,10 @@ export function StickyNote({
   const [isHover, setIsHover] = useState(false);
   const [isDragged, setIsDragged] = useState(false);
   const [text, setText] = useState("");
+  const [char, setChar] = useState(0);
 
   useEffect(() => {
-      setIsEditing(true);
+    setIsEditing(true);
   }, []);
 
   useEffect(() => {
@@ -62,6 +65,10 @@ export function StickyNote({
       setIsEditing(false);
     }
   }, [selected, isEditing]);
+
+  useEffect(() => {
+    setChar(text.length)
+  }, [text]);
 
   function toggleEdit() {
     setIsEditing(!isEditing);
@@ -112,9 +119,17 @@ export function StickyNote({
         width={width}
         height={height}
         isEditing={isEditing}
-        // onToggleEdit={toggleEdit}
-        // onChange={onTextChange}
-        onChange={(value) => setText(value)}
+        onChange={(value) => { if (value.length <= charLimit) { setText(value) } }}
+      />
+      <Text
+        x={16}
+        y={height + 40 - 16}
+        text={`${char}/${charLimit}`}
+        fill="rgba(0,0,0,0.4)"
+        fontFamily="sans-serif"
+        fontSize={18}
+        perfectDrawEnabled={false}
+        width={width}
       />
     </Group>
   );
