@@ -2,18 +2,18 @@ import React, { useState, useEffect } from "react";
 import { Group, Rect } from "react-konva";
 import { EditableText } from "./EditableText";
 
-const getStyle = (colour, selected, isHover, isDragged) => {
+const getStyle = (color, selected, isHover, isDragged) => {
   const isFirefox = navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
   const baseStyle = {
     x: 0,
     y: 0,
     width: 240,
     height: 260,
-    fill: colour,
+    fill: color.light,
     cornerRadius: 4,
     perfectDrawEnabled: false,
     strokeWidth: 4,
-    stroke: colour
+    stroke: color.light
   };
   if (isFirefox) {
     return baseStyle;
@@ -21,14 +21,14 @@ const getStyle = (colour, selected, isHover, isDragged) => {
   if (selected || isDragged) {
     return {
       ...baseStyle,
-      stroke: "#4caf50",
+      stroke: color.primary,
       strokeWidth: 4
     }
   }
   if (isHover) {
     return {
       ...baseStyle,
-      stroke: "#a6d7a8",
+      stroke: color.secondary,
       strokeWidth: 4
     }
   }
@@ -39,7 +39,7 @@ const getStyle = (colour, selected, isHover, isDragged) => {
 }
 
 export function StickyNote({
-  colour,
+  color,
   x,
   y,
   width,
@@ -64,7 +64,7 @@ export function StickyNote({
     onTextClick(!isEditing);
   }
 
-  const style = getStyle(colour, selected, isHover, isDragged);
+  const style = getStyle(color, selected, isHover, isDragged);
   return (
     <Group
       id={id}
@@ -89,7 +89,7 @@ export function StickyNote({
         y={0}
         width={width + 40}
         height={height + 60}
-        fill={colour}
+        fill={color.light}
         shadowColor="black"
         shadowOffsetY={0}
         shadowOffsetX={0}

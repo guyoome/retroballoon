@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Stage, Layer } from "react-konva";
 import { StickyNote } from "./StickyNote";
+import COLORS from "../utils/colors.json";
 
 const WhiteBoard = () => {
   const [text, setText] = useState("Click to resize. Double click to edit.");
@@ -35,7 +36,7 @@ const WhiteBoard = () => {
             id={`SN-${id}`}
             x={stickyNote.x}
             y={stickyNote.y}
-            colour="#d2ebd3"
+            color={COLORS.blue}
             width={width}
             height={height}
             selected={selected === `SN-${id}` ? true : false}

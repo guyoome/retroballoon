@@ -1,0 +1,27 @@
+{
+    "green": {
+        "primary": "#4caf50",
+        "secondary": "#a6d7a8",
+        "light": "#d2ebd3"
+    },
+    "orange":{
+        "primary": "#ffc107",
+        "secondary": "#ffe490",
+        "light": "#fff0c1"
+    },
+    "red":{
+        "primary": "#f44336",
+        "secondary": "#faa19b",
+        "light": "#fcd0cd"
+    },
+    "blue":{
+        "primary": "#2196f3",
+        "secondary": "#90cbf9",
+        "light": "#c8e5fc"
+    },
+    "yellow":{
+        "primary": "#ffeb3b",
+        "secondary": "#fff6a9",
+        "light": "#ffface"
+    }
+}
