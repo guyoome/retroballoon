@@ -2,19 +2,19 @@ import React, { useState, useEffect } from "react";
 import { Group, Rect, Text } from "react-konva";
 import { EditableText } from "./EditableText";
 
-const charLimit = 50;
+import CONSTANTS from "../utils/constants.json";
 
 const getStyle = (color, selected, isHover, isDragged) => {
   const isFirefox = navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
   const baseStyle = {
     x: 0,
     y: 0,
-    width: 240,
-    height: 260,
+    width: CONSTANTS.stickyNote.width + 40,
+    height: CONSTANTS.stickyNote.height + 60,
     fill: color.light,
-    cornerRadius: 4,
+    cornerRadius: CONSTANTS.stickyNote.cornerRadius,
     perfectDrawEnabled: false,
-    strokeWidth: 4,
+    strokeWidth: CONSTANTS.stickyNote.strokeWidth,
     stroke: color.light
   };
   if (isFirefox) {
@@ -23,15 +23,13 @@ const getStyle = (color, selected, isHover, isDragged) => {
   if (selected || isDragged) {
     return {
       ...baseStyle,
-      stroke: color.primary,
-      strokeWidth: 4
+      stroke: color.primary
     }
   }
   if (isHover) {
     return {
       ...baseStyle,
-      stroke: color.secondary,
-      strokeWidth: 4
+      stroke: color.secondary
     }
   }
   return {
@@ -44,8 +42,6 @@ export function StickyNote({
   color,
   x,
   y,
-  width,
-  height,
   selected,
   id,
   onTextClick
@@ -80,8 +76,8 @@ export function StickyNote({
     <Group
       id={id}
       rotation={selected || isDragged ? 0 : -1}
-      offsetX={(width + 40) / 2}
-      offsetY={(height + 60) / 2}
+      offsetX={(CONSTANTS.stickyNote.width + 40) / 2}
+      offsetY={(CONSTANTS.stickyNote.height + 60) / 2}
       duration={1}
       draggable
       x={x}
@@ -99,8 +95,8 @@ export function StickyNote({
       <Rect
         x={0}
         y={0}
-        width={width + 40}
-        height={height + 60}
+        width={CONSTANTS.stickyNote.width + 40}
+        height={CONSTANTS.stickyNote.height + 60}
         fill={color.light}
         shadowColor="black"
         shadowOffsetY={0}
@@ -116,20 +112,20 @@ export function StickyNote({
         x={16}
         y={32}
         text={text}
-        width={width}
-        height={height}
+        width={CONSTANTS.stickyNote.width}
+        height={CONSTANTS.stickyNote.height}
         isEditing={isEditing}
-        onChange={(value) => { if (value.length <= charLimit) { setText(value) } }}
+        onChange={(value) => { if (value.length <= CONSTANTS.stickyNote.charLimit) { setText(value) } }}
       />
       <Text
         x={16}
-        y={height + 40 - 16}
-        text={`${char}/${charLimit}`}
+        y={CONSTANTS.stickyNote.height + 40 - 16}
+        text={`${char}/${CONSTANTS.stickyNote.charLimit}`}
         fill="rgba(0,0,0,0.4)"
         fontFamily="sans-serif"
         fontSize={18}
         perfectDrawEnabled={false}
-        width={width}
+        width={CONSTANTS.stickyNote.width}
       />
     </Group>
   );
