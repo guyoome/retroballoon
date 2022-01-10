@@ -51,7 +51,11 @@ export function StickyNote({
   const [isEditing, setIsEditing] = useState(false);
   const [isHover, setIsHover] = useState(false);
   const [isDragged, setIsDragged] = useState(false);
-  const [text, setText] = useState("Click to resize. Double click to edit.");
+  const [text, setText] = useState("");
+
+  useEffect(() => {
+      setIsEditing(true);
+  }, []);
 
   useEffect(() => {
     if (!selected && isEditing) {
@@ -76,6 +80,7 @@ export function StickyNote({
       x={x}
       y={y}
       onClick={(e) => { e.target.parent.moveToTop(); }}
+      onDblClick={() => { toggleEdit() }}
       onDragStart={(e) => { setIsDragged(true); e.target.moveToTop() }}
       onDragEnd={() => { setIsDragged(false) }}
       onMouseEnter={() => { setIsHover(true); }}
@@ -107,7 +112,7 @@ export function StickyNote({
         width={width}
         height={height}
         isEditing={isEditing}
-        onToggleEdit={toggleEdit}
+        // onToggleEdit={toggleEdit}
         // onChange={onTextChange}
         onChange={(value) => setText(value)}
       />

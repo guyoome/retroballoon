@@ -23,10 +23,13 @@ const WhiteBoard = () => {
       }}
       onDblClick={(e) => {
         console.log("🦁", e)
-        setStickyNotes(stickyNotes.concat({
-          x: e.evt.layerX,
-          y: e.evt.layerY
-        }))
+        if (e.currentTarget._id === e.target._id) {
+          setStickyNotes(stickyNotes.concat({
+            x: e.evt.layerX,
+            y: e.evt.layerY
+          }))
+          setSelected(`SN-${stickyNotes.length}`);
+        }
       }}
     >
       <Layer>
@@ -34,6 +37,7 @@ const WhiteBoard = () => {
           <StickyNote
             key={id}
             id={`SN-${id}`}
+            // id={stickyNote.id}
             x={stickyNote.x}
             y={stickyNote.y}
             color={COLORS.blue}

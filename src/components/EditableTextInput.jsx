@@ -1,5 +1,6 @@
 import React from "react";
 import { Html } from "react-konva-utils";
+import { useEffect } from "react/cjs/react.production.min";
 
 function getStyle(width, height) {
   const isFirefox = navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
@@ -34,14 +35,18 @@ export function EditableTextInput({
   onChange,
   onKeyDown
 }) {
+
   const style = getStyle(width, height);
   return (
     <Html groupProps={{ x, y }} divProps={{ style: { opacity: 1 } }}>
       <textarea
+        id={"textarea"}
         value={value}
         onChange={onChange}
         onKeyDown={onKeyDown}
         style={style}
+        autoFocus
+        onFocus={e => e.currentTarget.select()}
       />
     </Html>
   );
