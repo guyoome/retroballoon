@@ -1,0 +1,42 @@
+.tb-last {
+  position: absolute;
+  bottom: 32px;
+  left: 16px;
+  display: flex;
+  height: 32px;
+  line-height: 32px;
+  overflow: hidden;
+}
+
+.tb-group {
+  display: flex;
+  background-color: #fff;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.tb-item {
+  min-width: 32px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.tb-item:not(:first-child) {
+    border-left: 1px solid #F2F2F2;
+}
+
+.tb-item.--2 {
+  min-width: 64px;
+}
+
+.tb-item:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.tb-item.--text {
+    color: rgba(0, 0, 0, 0.9);
+    font-weight: 500;
+}

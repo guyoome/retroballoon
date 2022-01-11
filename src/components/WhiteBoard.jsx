@@ -3,10 +3,10 @@ import { Stage, Layer } from "react-konva";
 import { StickyNote } from "./StickyNote";
 import COLORS from "../utils/colors.json";
 
-const WhiteBoard = () => {
+const WhiteBoard = ({ onZoom }) => {
   const [selected, setSelected] = useState();
   const [stickyNotes, setStickyNotes] = useState([]);
-  const [stageScale, setStageScale] = useState(1);
+  const [stageScale, setStageScale] = useState(0.3);
   const [stageX, setStageX] = useState(0);
   const [stageY, setStageY] = useState(0);
   const [handleWheel, setHandleWheel] = useState();
@@ -14,7 +14,7 @@ const WhiteBoard = () => {
   useEffect(() => {
     try {
       handleWheel.evt.preventDefault();
-  
+
       // const scaleBy = 1.01;
       const scaleBy = 1.05;
 
@@ -24,11 +24,16 @@ const WhiteBoard = () => {
         x: stage.getPointerPosition().x / oldScale - stage.x() / oldScale,
         y: stage.getPointerPosition().y / oldScale - stage.y() / oldScale
       };
-  
-      const newScale = handleWheel.evt.deltaY > 0 ? oldScale * scaleBy : oldScale / scaleBy;
-  
+
+      let newScale = handleWheel.evt.deltaY > 0 ? oldScale * scaleBy : oldScale / scaleBy;
+      if (newScale > 1.8) {
+        newScale = 1.8;
+      } else if (newScale < 0.06) {
+        newScale = 0.06;
+      }
+
       stage.scale({ x: newScale, y: newScale });
-  
+
       // this.setState({
       //   stageScale: newScale,
       //   stageX:
@@ -39,15 +44,19 @@ const WhiteBoard = () => {
       setStageScale(newScale);
       setStageX(-(mousePointTo.x - stage.getPointerPosition().x / newScale) * newScale);
       setStageY(-(mousePointTo.y - stage.getPointerPosition().y / newScale) * newScale);
-      
+
     } catch (error) {
-      
+
     }
   }, [handleWheel]);
 
+  useEffect(() => {
+    onZoom(stageScale)
+  }, [stageScale]);
+
   return (
     <Stage
-    style={{backgroundColor:"#eff3f6"}}
+      style={{ backgroundColor: "#eff3f6" }}
       width={window.innerWidth}
       height={window.innerHeight}
       draggable
@@ -64,8 +73,8 @@ const WhiteBoard = () => {
         }
       }}
       onDblClick={(e) => {
-        console.log("🅱️",e.target.getRelativePointerPosition())
-        console.log("🗻",e.evt.layerX,e.evt.layerY)
+        console.log("🅱️", e.target.getRelativePointerPosition())
+        console.log("🗻", e.evt.layerX, e.evt.layerY)
         if (e.currentTarget._id === e.target._id) {
           const mouse = e.target.getRelativePointerPosition();
           setStickyNotes(stickyNotes.concat({
