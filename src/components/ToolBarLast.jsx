@@ -3,7 +3,8 @@ import "./toolbar.css"
 import CONSTANTS from "../utils/constants.json";
 
 export function ToolBarLast({
-  scale
+  scale,
+  onZoom
 }) {
   const [zoom, setZoom] = useState(100);
 
@@ -17,13 +18,17 @@ export function ToolBarLast({
   return (
     <div className="tb-last">
       <div className="tb-group">
-        <div className="tb-item">
+        <div
+          className="tb-item"
+          onClick={() => onZoom(0.3)}>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" strokeWidth="1.5" viewBox="0 0 24 24" fill="none">
             <path d="M6 12H18" stroke="rgba(0,0,0,0.9)" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </div>
         <div className="tb-item --2 --text">{zoom}%</div>
-        <div className="tb-item">
+        <div 
+        className="tb-item"
+        onClick={() => onZoom(0.05)}>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" strokeWidth="1.5" viewBox="0 0 24 24" fill="none">
             <path d="M6 12H12M18 12H12M12 12V6M12 12V18" stroke="rgba(0,0,0,0.9)" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
