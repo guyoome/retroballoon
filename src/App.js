@@ -10,27 +10,43 @@ function App() {
 
   const onZoom = (e) => {
     e.evt.preventDefault();
+    
+    if (Math.abs(e.evt.wheelDelta) < 120) {
+      let posX = stageX;
+      posX -= e.evt.deltaX * 2;
+      setStageX(posX);
 
-    const scaleBy = 1.045;
+      let posY = stageY;
+      posY -= e.evt.deltaY * 2;
+      setStageY(posY)
+    } else {
 
-    const stage = e.target.getStage();
-    const oldScale = stage.scaleX();
-    const mousePointTo = {
-      x: stage.getPointerPosition().x / oldScale - stage.x() / oldScale,
-      y: stage.getPointerPosition().y / oldScale - stage.y() / oldScale
-    };
+      const scaleBy = 1.06;
 
-    let newScale = e.evt.deltaY < 0 ? oldScale * scaleBy : oldScale / scaleBy;
-    if (newScale > 1.8) {
-      newScale = 1.8;
-    } else if (newScale < 0.06) {
-      newScale = 0.06;
+      const stage = e.target.getStage();
+      const oldScale = stage.scaleX();
+      const mousePointTo = {
+        x: stage.getPointerPosition().x / oldScale - stage.x() / oldScale,
+        y: stage.getPointerPosition().y / oldScale - stage.y() / oldScale
+      };
+
+      let newScale = e.evt.deltaY < 0 ? oldScale * scaleBy : oldScale / scaleBy;
+      if (newScale > 1.8) {
+        newScale = 1.8;
+      } else if (newScale < 0.06) {
+        newScale = 0.06;
+      }
+      stage.scale({ x: newScale, y: newScale });
+      setScale(newScale);
+      setStageX(-(mousePointTo.x - stage.getPointerPosition().x / newScale) * newScale);
+      setStageY(-(mousePointTo.y - stage.getPointerPosition().y / newScale) * newScale);
     }
-    stage.scale({ x: newScale, y: newScale });
-    setScale(newScale);
-    setStageX(-(mousePointTo.x - stage.getPointerPosition().x / newScale) * newScale);
-    setStageY(-(mousePointTo.y - stage.getPointerPosition().y / newScale) * newScale);
   }
+
+  // Remove accessibility zoom (pinch + ctrl + wheel) - zoom on DOM element
+  document.addEventListener('wheel', function (e) {
+    e.preventDefault();
+  }, { passive: false });
 
   return (
     <div className="App">

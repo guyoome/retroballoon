@@ -37,7 +37,7 @@ export function EditableTextInput({
 
   const style = getStyle(width, height);
   return (
-    <Html groupProps={{ x, y }} divProps={{ style: { opacity: 1 } }}>
+    <Html groupProps={{ x, y }} divProps={{ style: { opacity: 1 } }} >
       <textarea
         id={"textarea"}
         value={value}
@@ -46,6 +46,7 @@ export function EditableTextInput({
         style={style}
         autoFocus
         onFocus={e => e.currentTarget.select()}
+        // onWheel={(e)=>e.preventDefault()}
       />
     </Html>
   );
