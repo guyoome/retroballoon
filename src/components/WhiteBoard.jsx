@@ -7,23 +7,37 @@ const WhiteBoard = ({ onZoom, scale, stageX, stageY }) => {
   const [selected, setSelected] = useState();
   const [stickyNotes, setStickyNotes] = useState([]);
   const [cursor, setCursor] = useState("default");
+  const [stageWidth, setStageWidth] = useState(window.innerWidth);
+  const [stageHeight, setStageHeight] = useState(window.innerHeight);
+
+
+  // handle auto resize of the stage
+  React.useEffect(() => {
+    function handleResize() {
+      setStageWidth(window.innerWidth);
+      setStageHeight(window.innerHeight);
+
+    }
+
+    window.addEventListener('resize', handleResize)
+  })
 
   return (
     <Stage
       id="stage"
       style={{ backgroundColor: "#eff3f6", cursor: cursor }}
-      width={window.innerWidth}
-      height={window.innerHeight}
+      width={stageWidth}
+      height={stageHeight}
       draggable
       scaleX={scale}
       scaleY={scale}
       x={stageX}
       y={stageY}
       onWheel={(e) => onZoom(e)}
-      
+
       // onTouchStart={()=>{console.log("hey")}}
       // onPointerMove={(e)=>{console.log("hey",e)}}
-      onDragStart={(e) => { if (e.currentTarget._id === e.target._id) { setCursor("grabbing");console.log("👻e",e) } }}
+      onDragStart={(e) => { if (e.currentTarget._id === e.target._id) { setCursor("grabbing"); console.log("👻e", e) } }}
       onDragEnd={(e) => setCursor("default")}
       onMouseDown={(e) => { if (e.currentTarget._id === e.target._id) { setCursor("grabbing") } }}
       onMouseUp={(e) => setCursor("default")}
