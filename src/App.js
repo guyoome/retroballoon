@@ -20,7 +20,7 @@ function App() {
       y: stage.getPointerPosition().y / oldScale - stage.y() / oldScale
     };
 
-    let newScale = e.evt.deltaY > 0 ? oldScale * scaleBy : oldScale / scaleBy;
+    let newScale = e.evt.deltaY < 0 ? oldScale * scaleBy : oldScale / scaleBy;
     if (newScale > 1.8) {
       newScale = 1.8;
     } else if (newScale < 0.06) {

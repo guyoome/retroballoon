@@ -20,7 +20,9 @@ const WhiteBoard = ({ onZoom, scale, stageX, stageY }) => {
       x={stageX}
       y={stageY}
       onWheel={(e) => onZoom(e)}
-      onDragStart={(e) => { if (e.currentTarget._id === e.target._id) { setCursor("grabbing") } }}
+      // onTouchStart={()=>{console.log("hey")}}
+      onPointerMove={(e)=>{console.log("hey",e)}}
+      onDragStart={(e) => { if (e.currentTarget._id === e.target._id) { setCursor("grabbing");console.log("👻e",e) } }}
       onDragEnd={(e) => setCursor("default")}
       onMouseDown={(e) => { if (e.currentTarget._id === e.target._id) { setCursor("grabbing") } }}
       onMouseUp={(e) => setCursor("default")}
