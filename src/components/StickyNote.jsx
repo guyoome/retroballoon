@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Group, Rect, Text } from "react-konva";
 import { EditableText } from "./EditableText";
+import { Html } from "react-konva-utils";
+
 
 import CONSTANTS from "../utils/constants.json";
 

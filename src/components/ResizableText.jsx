@@ -1,5 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { Text, Transformer } from "react-konva";
+import { Html } from "react-konva-utils";
+
 
 export function ResizableText({
   x,
@@ -63,9 +65,9 @@ export function ResizableText({
         onTap={onClick}
         onDblClick={onDoubleClick}
         onDblTap={onDoubleClick}
-        width={width}
-      />
-      {transformer}
+        width={width}>
+        {transformer}
+      </Text>
     </>
   );
 }
