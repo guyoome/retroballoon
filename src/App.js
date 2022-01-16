@@ -12,15 +12,8 @@ function App() {
 
   const onDrag = (e) => {
     e.evt.preventDefault();
-     console.log("🏷️Drag",e)
-    let posX = stageX;
-    posX -= e.evt.deltaX * 2;
-    setStageX(posX);
-
-    let posY = stageY;
-    posY -= e.evt.deltaY * 2;
-    setStageY(posY)
-
+    setStageX(e.currentTarget.x());
+    setStageY(e.currentTarget.y())
   }
 
   const onZoom = (e) => {
@@ -58,6 +51,12 @@ function App() {
     }
   }
 
+  const resetZoom = () => {
+    setScale(0.2);
+    setStageX(0);
+    setStageY(0);
+  }
+
   // Remove accessibility zoom (pinch + ctrl + wheel) - zoom on DOM element
   document.addEventListener('wheel', function (e) {
     e.preventDefault();
@@ -66,7 +65,7 @@ function App() {
   return (
     <div className="App" style={{ cursor: MOUSE.default }}>
       <WhiteBoard onZoom={(e) => onZoom(e)} onDrag={(e) => { onDrag(e) }} scale={scale} stageX={stageX} stageY={stageY} />
-      <ToolBarLast scale={scale} />
+      <ToolBarLast scale={scale} resetZoom={() => { resetZoom() }} />
       <ToolBarFirst />
     </div>
   );

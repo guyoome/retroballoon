@@ -55,7 +55,7 @@ export function ToolBarFirst({
             <path d="M3 6L21 6" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
             <path d="M3 18L21 18" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-            <span className="tooltiptext">Zone Tool</span>
+          <span className="tooltiptext">Zone Tool</span>
         </div>
       </div>
     </div>
