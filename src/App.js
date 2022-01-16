@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import './App.css';
 import WhiteBoard from './components/WhiteBoard';
 import { ToolBarLast } from './components/ToolBarLast';
-import {ToolBarFirst} from './components/ToolBarFirst';
+import { ToolBarFirst } from './components/ToolBarFirst';
 import MOUSE from './utils/cursor.json';
 
 function App() {
@@ -10,9 +10,22 @@ function App() {
   const [stageX, setStageX] = useState(0);
   const [stageY, setStageY] = useState(0);
 
+  const onDrag = (e) => {
+    e.evt.preventDefault();
+     console.log("🏷️Drag",e)
+    let posX = stageX;
+    posX -= e.evt.deltaX * 2;
+    setStageX(posX);
+
+    let posY = stageY;
+    posY -= e.evt.deltaY * 2;
+    setStageY(posY)
+
+  }
+
   const onZoom = (e) => {
     e.evt.preventDefault();
-    
+
     if (Math.abs(e.evt.wheelDelta) < 120) {
       let posX = stageX;
       posX -= e.evt.deltaX * 2;
@@ -51,10 +64,10 @@ function App() {
   }, { passive: false });
 
   return (
-    <div className="App" style={{cursor:MOUSE.default}}>
-      <WhiteBoard onZoom={(e) => onZoom(e)} scale={scale} stageX={stageX} stageY={stageY} />
+    <div className="App" style={{ cursor: MOUSE.default }}>
+      <WhiteBoard onZoom={(e) => onZoom(e)} onDrag={(e) => { onDrag(e) }} scale={scale} stageX={stageX} stageY={stageY} />
       <ToolBarLast scale={scale} />
-      <ToolBarFirst/>
+      <ToolBarFirst />
     </div>
   );
 }
