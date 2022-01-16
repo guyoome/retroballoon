@@ -105,7 +105,7 @@ const WhiteBoard = ({ onZoom, scale, stageX, stageY, onDrag }) => {
         <Layer>
           {stickyNotes.map((stickyNote, id) => (
             <StickyNote
-              key={id}
+              key={stickyNote.id}
               id={stickyNote.id}
               x={stickyNote.x}
               y={stickyNote.y}
