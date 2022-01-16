@@ -1,11 +1,12 @@
 import React from 'react';
 import './navbar.css';
+import { ReactComponent as Logo } from '../assets/logo.svg';
 
 function Navbar(props) {
     return (
         <nav>
             <div className='navbar-container'>
-                <div className='logo' >🎈 RetroBalloon</div>
+                <div className='logo' ><Logo/> RetroBalloon</div>
                 <ul>
                     <li> <a >
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" strokeWidth="1.5" viewBox="0 0 24 24" fill="none">
