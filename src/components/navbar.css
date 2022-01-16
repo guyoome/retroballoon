@@ -67,3 +67,12 @@ nav a:hover::after,
 nav a:focus::after{
   transform: scale(1);
 }
+
+.footer{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 8px;
+    width: 100%;
+    background-color: #000;
+}
