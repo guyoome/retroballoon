@@ -27,7 +27,7 @@ const WhiteBoard = ({ onZoom, scale, stageX, stageY }) => {
     <Stage
       id="stage"
       style={{
-        backgroundColor: "#eff3f6", cursor: MOUSE[cursor]
+        backgroundColor: "#e5e5e5", cursor: MOUSE[cursor]
       }}
       width={stageWidth}
       height={stageHeight}
