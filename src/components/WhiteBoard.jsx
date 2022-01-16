@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Stage, Layer, Rect } from "react-konva";
 import { StickyNote } from "./StickyNote";
 import COLORS from "../utils/colors.json";
+import MOUSE from "../utils/cursor.json";
 
 const WhiteBoard = ({ onZoom, scale, stageX, stageY }) => {
   const [selected, setSelected] = useState();
@@ -25,7 +26,9 @@ const WhiteBoard = ({ onZoom, scale, stageX, stageY }) => {
   return (
     <Stage
       id="stage"
-      style={{ backgroundColor: "#eff3f6", cursor: cursor }}
+      style={{
+        backgroundColor: "#eff3f6", cursor: MOUSE[cursor]
+      }}
       width={stageWidth}
       height={stageHeight}
       draggable
@@ -34,9 +37,9 @@ const WhiteBoard = ({ onZoom, scale, stageX, stageY }) => {
       x={stageX}
       y={stageY}
       onWheel={(e) => onZoom(e)}
-      onDragStart={(e) => { if (e.currentTarget._id === e.target._id) { setCursor("grabbing"); console.log("👻e", e) } }}
+      onDragStart={(e) => { if (e.currentTarget._id === e.target._id) { setCursor("grab");} }}
       onDragEnd={(e) => setCursor("default")}
-      onMouseDown={(e) => { if (e.currentTarget._id === e.target._id) { setCursor("grabbing") } }}
+      onMouseDown={(e) => { if (e.currentTarget._id === e.target._id) { setCursor("grab") } }}
       onMouseUp={(e) => setCursor("default")}
       onClick={(e) => {
         if (e.currentTarget._id === e.target._id) {

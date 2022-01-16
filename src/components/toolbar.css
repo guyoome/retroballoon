@@ -13,6 +13,7 @@
   background-color: #fff;
   border-radius: 4px;
   overflow: hidden;
+  border: 2px solid #000;
 }
 
 .tb-item {
@@ -21,18 +22,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome, Edge, Opera and Firefox */
+  /* cursor: pointer; */
 }
 
 .tb-item:not(:first-child) {
-    border-left: 1px solid #F2F2F2;
+    /* border-left: 2px solid rgba(0, 0, 0, 0.7); */
 }
 
 .tb-item.--2 {
@@ -46,4 +40,33 @@
 .tb-item.--text {
     color: rgba(0, 0, 0, 0.9);
     font-weight: 500;
+}
+
+.tb-first {
+  position: absolute;
+  top: 32px;
+  left: 16px;
+  display: flex;
+  /* width: 48px; */
+  /* height: 32px; */
+  flex-direction: column;
+  row-gap: 16px;
+  line-height: 48px;
+  overflow: hidden;
+}
+
+.tb-group.--col{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 48px;
+}
+
+.tb-item.--col{
+  height: 48px;
+}
+
+.tb-item.--col:not(:first-child) {
+  border: none;
+  /* border-top: 1px solid #000; */
 }

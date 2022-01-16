@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import './App.css';
 import WhiteBoard from './components/WhiteBoard';
 import { ToolBarLast } from './components/ToolBarLast';
+import {ToolBarFirst} from './components/ToolBarFirst';
+import MOUSE from './utils/cursor.json';
 
 function App() {
   const [scale, setScale] = useState(0.2);
@@ -49,9 +51,10 @@ function App() {
   }, { passive: false });
 
   return (
-    <div className="App">
+    <div className="App" style={{cursor:MOUSE.default}}>
       <WhiteBoard onZoom={(e) => onZoom(e)} scale={scale} stageX={stageX} stageY={stageY} />
       <ToolBarLast scale={scale} />
+      <ToolBarFirst/>
     </div>
   );
 }
