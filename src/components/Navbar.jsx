@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react';
-// import { useNavigate } from "react-router-dom";
+import React from 'react';
 import './navbar.css';
 
 function Navbar(props) {
-    // const navigate = useNavigate();
     return (
         <nav>
             <div className='navbar-container'>

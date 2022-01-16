@@ -1,16 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./toolbar.css"
-import CONSTANTS from "../utils/constants.json";
 
-export function ToolBarFirst({
-  scale
-}) {
-  const [zoom, setZoom] = useState(100);
-
-  useEffect(() => {
-    const percent = Math.round(scale * 100 / 0.2);
-    setZoom(percent);
-  }, [scale]);
+export function ToolBarFirst({ }) {
 
   return (
     <div className="tb-first">

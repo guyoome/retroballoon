@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import './App.css';
 import WhiteBoard from './components/WhiteBoard';
 import { ToolBarLast } from './components/ToolBarLast';
 import { ToolBarFirst } from './components/ToolBarFirst';
 import MOUSE from './utils/cursor.json';
+import CONSTANTS from './utils/constants.json';
 
 function App() {
-  const [scale, setScale] = useState(0.2);
+  const [scale, setScale] = useState(CONSTANTS.whiteboard.defaultScale);
   const [stageX, setStageX] = useState(0);
   const [stageY, setStageY] = useState(0);
 
@@ -29,7 +30,7 @@ function App() {
       setStageY(posY)
     } else {
 
-      const scaleBy = 1.06;
+      const scaleBy = CONSTANTS.whiteboard.scaleBy;
 
       const stage = e.target.getStage();
       const oldScale = stage.scaleX();
@@ -52,7 +53,7 @@ function App() {
   }
 
   const resetZoom = () => {
-    setScale(0.2);
+    setScale(CONSTANTS.whiteboard.defaultScale);
     setStageX(0);
     setStageY(0);
   }

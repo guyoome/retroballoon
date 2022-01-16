@@ -5,5 +5,9 @@
         "charLimit": 65,
         "strokeWidth": 4,
         "cornerRadius": 4
+    },
+    "whiteboard": {
+        "defaultScale": 0.2,
+        "scaleBy": 1.06
     }
 }

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Stage, Layer, Rect } from "react-konva";
+import React, { useState } from "react";
+import { Stage, Layer } from "react-konva";
 import { StickyNote } from "./StickyNote";
 import COLORS from "../utils/colors.json";
 import MOUSE from "../utils/cursor.json";
@@ -38,7 +38,6 @@ const WhiteBoard = ({ onZoom, scale, stageX, stageY, onDrag }) => {
       y={stageY}
       onWheel={(e) => onZoom(e)}
       onDragStart={(e) => { if (e.currentTarget._id === e.target._id) { setCursor("grab"); } }}
-      // onDragMove={(e)=>{onDrag(e)}}
       onDragEnd={(e) => { setCursor("default"); onDrag(e) }}
       onMouseDown={(e) => { if (e.currentTarget._id === e.target._id) { setCursor("grab") } }}
       onMouseUp={(e) => setCursor("default")}
@@ -68,9 +67,7 @@ const WhiteBoard = ({ onZoom, scale, stageX, stageY, onDrag }) => {
             y={stickyNote.y}
             color={COLORS.blue}
             selected={selected === `SN-${id}` ? true : false}
-          />
-        )
-        )}
+          />))}
       </Layer>
     </Stage>
   );

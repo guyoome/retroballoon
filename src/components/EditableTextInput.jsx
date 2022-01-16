@@ -46,7 +46,6 @@ export function EditableTextInput({
         style={style}
         autoFocus
         onFocus={e => e.currentTarget.select()}
-        // onWheel={(e)=>e.preventDefault()}
       />
     </Html>
   );

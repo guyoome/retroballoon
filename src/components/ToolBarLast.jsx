@@ -9,7 +9,7 @@ export function ToolBarLast({
   const [zoom, setZoom] = useState(100);
 
   useEffect(() => {
-    const percent = Math.round(scale * 100 / 0.2);
+    const percent = Math.round(scale * 100 / CONSTANTS.whiteboard.defaultScale);
     setZoom(percent);
   }, [scale]);
 

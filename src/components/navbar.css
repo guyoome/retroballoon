@@ -1,15 +1,12 @@
 .navbar-container {
-    /* max-width: 1280px; */
     padding: 0 24px;
     margin: auto;
-    /* background-color: brown; */
 }
 
 nav {
     position: fixed;
     width: 100%;
     top: 0;
-    /* border-bottom: 1px solid rgba(0, 0, 0, 0.12); */
     background-color: #000;
     z-index: 999;
 }
@@ -65,12 +62,6 @@ nav a::after {
     transform: scale(0);
     transform-origin: center;
 }
-
-/* nav a:hover::after,
-a:focus::after {
-  opacity: 1;
-  transform: translate3d(0, 0.2em, 0);
-} */
 
 nav a:hover::after,
 nav a:focus::after{
