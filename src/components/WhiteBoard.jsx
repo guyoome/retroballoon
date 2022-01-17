@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Stage, Layer } from "react-konva";
 import { StickyNote } from "./StickyNote";
+import { StickyNoteHTML } from "./StickyNoteHTML";
 import COLORS from "../utils/colors.json";
 import MOUSE from "../utils/cursor.json";
 
@@ -112,6 +113,11 @@ const WhiteBoard = ({ onZoom, scale, stageX, stageY, onDrag }) => {
               color={COLORS.blue}
               selected={selected === `${stickyNote.id}` ? true : false}
             />))}
+            <StickyNoteHTML
+            x={100}
+            y={100}
+            color={COLORS.blue}
+            />
         </Layer>
       </Stage>
     </div>
