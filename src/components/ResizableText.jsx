@@ -55,8 +55,9 @@ export function ResizableText({
         ref={textRef}
         text={text}
         fill="black"
-        fontFamily="sans-serif"
+        fontFamily="Poppins"
         fontSize={24}
+        lineHeight={1.5}
         perfectDrawEnabled={false}
         onTransform={handleResize}
         onClick={onClick}

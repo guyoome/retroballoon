@@ -14,7 +14,8 @@ function getStyle(width, height) {
     resize: "none",
     colour: "black",
     fontSize: "24px",
-    fontFamily: "sans-serif"
+    lineHeight:"1.5",
+    fontFamily: "Poppins"
   };
   if (isFirefox) {
     return baseStyle;

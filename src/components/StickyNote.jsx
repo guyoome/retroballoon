@@ -115,16 +115,18 @@ export function StickyNote({
         isEditing={isEditing}
         onChange={(value) => { if (value.length <= CONSTANTS.stickyNote.charLimit) { setText(value) } }}
       />
-      <Text
-        x={16}
-        y={CONSTANTS.stickyNote.height + 40 - 16}
-        text={`${char}/${CONSTANTS.stickyNote.charLimit}`}
-        fill="rgba(0,0,0,0.4)"
-        fontFamily="sans-serif"
-        fontSize={18}
-        perfectDrawEnabled={false}
-        width={CONSTANTS.stickyNote.width}
-      />
+      {selected &&
+        <Text
+          x={16}
+          y={CONSTANTS.stickyNote.height + 40 - 16}
+          text={`${char}/${CONSTANTS.stickyNote.charLimit}`}
+          fill="rgba(0,0,0,0.4)"
+          fontFamily="Poppins"
+          fontSize={18}
+          perfectDrawEnabled={false}
+          width={CONSTANTS.stickyNote.width}
+        />
+      }
     </Group>
   );
 }

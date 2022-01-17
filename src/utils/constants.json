@@ -2,7 +2,7 @@
     "stickyNote": {
         "width": 200,
         "height": 200,
-        "charLimit": 65,
+        "charLimit": 50,
         "strokeWidth": 4,
         "cornerRadius": 4
     },
