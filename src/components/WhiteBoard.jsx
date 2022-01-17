@@ -63,13 +63,12 @@ const WhiteBoard = ({ onZoom, scale, stageX, stageY, onDrag }) => {
 
   return (
     <div id="container"
-      onKeyDown={(e) => { if (e.key === "Delete") deleteStickyNote(e) }}>
+      onKeyDown={(e) => { if (e.key === "Delete") deleteStickyNote(e) }}
+      style={{ cursor: MOUSE[cursor] }}>
       <Stage
         container='container'
         id="stage"
-        style={{
-          backgroundColor: "#e5e5e5", cursor: MOUSE[cursor]
-        }}
+        style={{ backgroundColor: "#e5e5e5" }}
         width={stageWidth}
         height={stageHeight}
         draggable
@@ -80,7 +79,7 @@ const WhiteBoard = ({ onZoom, scale, stageX, stageY, onDrag }) => {
         onWheel={(e) => onZoom(e)}
         onDragStart={(e) => { if (e.currentTarget._id === e.target._id) { setCursor("grab"); } }}
         onDragEnd={(e) => { setCursor("default"); onDrag(e) }}
-        onMouseDown={(e) => { if (e.currentTarget._id === e.target._id) { setCursor("grab") } }}
+        onMouseDown={(e) => { if (e.currentTarget._id === e.target._id) { setCursor("grab"); } }}
         onMouseUp={(e) => setCursor("default")}
         onClick={(e) => {
           selectStage(e)
